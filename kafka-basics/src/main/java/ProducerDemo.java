@@ -28,7 +28,7 @@ public class ProducerDemo {
         ProducerRecord<String, String> producerRecord =
                 new ProducerRecord<>("demo.java.topic", "Sample data sent to Kafka Topic by Java code via Kafka Streams API");
 
-        // Send Data
+        // Send Data -- Asynchronously
         producer.send(producerRecord);
 
         // Flush and Close Producer
