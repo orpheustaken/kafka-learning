@@ -11,7 +11,7 @@ public class ProducerDemo {
     private static final Logger log = LoggerFactory.getLogger(ProducerDemo.class.getSimpleName());
 
     public static void main(String[] args) {
-        log.info("Logging a relevant information here...");
+        log.info("Kafka ProducerDemo Class");
 
         // Create Producer Properties
         // Connect to localhost
