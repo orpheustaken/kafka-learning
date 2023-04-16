@@ -10,6 +10,15 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
+// https://stackoverflow.com/questions/2921945/useful-example-of-a-shutdown-hook-in-java
+
+/**
+ * When the virtual machine begins its shutdown sequence it will start all registered shutdown hooks in some unspecified order and let them run concurrently.
+ * When all the hooks have finished it will then run all uninvoked finalizers if finalization-on-exit has been enabled.
+ * Finally, the virtual machine will halt.
+ */
+
+// That is, a shutdown hook keeps the JVM running until the hook has terminated (returned from the run() method.
 public class ConsumerDemoWithShutdown {
 
     private static final Logger log = LoggerFactory.getLogger(ConsumerDemoWithShutdown.class.getSimpleName());
