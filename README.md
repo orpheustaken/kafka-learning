@@ -11,11 +11,11 @@
 
 ### Environment Setup
 
-To execute the code for Producers and Consumers inside `kafka-basics/`, it is necessary to have an instance of Zookeeper, at `localhost:2181`, and Kafka Server running in your localhost at port `localhost:9092`.
+To execute the code for Producers and Consumers inside `kafka-basics/`, it is necessary to have an instance of Zookeeper, at `localhost:2181`, and Kafka running in your localhost at port `localhost:9092`.
 
 ### Docker Containers
 
-Environment setup is all already configured in the `docker-compose.yml` dockerfile.
+Environment setup is already configured in the `docker-compose.yml` dockerfile.
 
 Inside the project's folder, run:
 
