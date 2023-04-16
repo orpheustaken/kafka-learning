@@ -5,17 +5,65 @@
 
 ~~And maybe a sample side project that I'll probably never finish...~~
 
-### Kafka Basics
+## Kafka Basics
+
+---
+
+### Environment Setup
 
 To execute the code for Producers and Consumers inside `kafka-basics/`, it is necessary to have an instance of Zookeeper, at `localhost:2181`, and Kafka Server running in your localhost at port `localhost:9092`.
 
-A topic called `demo.java.topic` should also be created with at least 3 partitions.
+### Docker Containers
 
-This allows to observe the logs and see Kafka's behavior to assign, manage and rebalance partitions.
+Environment setup is all already configured in the `docker-compose.yml` dockerfile.
 
-Instructions on how to do this setup are available [here](https://www.conduktor.io/kafka/kafka-cli-tutorial).
+Inside the project's folder, run:
 
-### Kafka Theory Roundup
+```console
+docker compose up
+```
+
+This will pull the images from Docker Hub and start the required services.
+
+---
+
+### Topics
+
+A topic called `demo.java.topic` should also be created with at least 3 partitions. This allows to observe the logs and see Kafka's behavior to assign, manage and rebalance partitions.
+
+Scripts to execute the commands below are available in the `bin/` folder of the Apache Kafka [Binary Download](https://kafka.apache.org/downloads)
+
+#### Create Topics
+
+```console
+kafka-topics.sh --bootstrap-server localhost:9092 --topic demo.java.topic --create --partitions 3 --replication-factor 1
+```
+
+#### List Topics
+
+```console
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+```
+
+#### Describe Topics
+
+```console
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic demo.java.topic
+```
+
+#### Delete Topics
+
+```console
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic demo.java.topic
+```
+
+There are also ways to start Producers and Consumers from the CLI tools.
+
+More instructions are available [here](https://www.conduktor.io/kafka/kafka-cli-tutorial).
+
+---
+
+## Kafka Theory Roundup
 
 From the Conduktor's Udemy Course where I'm getting this knowledge from...
 
