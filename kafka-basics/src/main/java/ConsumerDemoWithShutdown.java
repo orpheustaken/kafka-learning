@@ -95,7 +95,7 @@ public class ConsumerDemoWithShutdown {
         }
         // This catch, otherwise, is to handle a unexpected exception...
         catch (Exception e) {
-            log.error("Unexpected exception...");
+            log.error("Unexpected exception...", e);
         } finally {
             // This is to actually close the connection properly, after all exceptions
             consumer.close(); // This will also commit offsets
