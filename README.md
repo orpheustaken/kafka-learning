@@ -5,6 +5,8 @@
 
 ~~And maybe a sample side project that I'll probably never finish...~~
 
+This project uses OpenJDK 11.
+
 ## Kafka Basics
 
 ---
