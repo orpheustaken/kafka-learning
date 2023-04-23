@@ -13,8 +13,6 @@ The Application then consumes the data from the topic and sends to a local insta
 
 ## Kafka Basics
 
----
-
 ### Environment Setup
 
 To execute the code for Producers and Consumers inside `kafka-basics/`, it is necessary to have an instance of Zookeeper, at `localhost:2181`, and Kafka running in your localhost at port `localhost:9092`.
@@ -30,8 +28,6 @@ docker compose up
 ```
 
 This will pull the images from Docker Hub and start the required services.
-
----
 
 ### Topics
 
@@ -66,8 +62,6 @@ kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic demo.java.top
 There are also ways to start Producers and Consumers from the CLI tools.
 
 More instructions are available [here](https://www.conduktor.io/kafka/kafka-cli-tutorial).
-
----
 
 ## Kafka Theory Roundup
 
