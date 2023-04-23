@@ -1,11 +1,15 @@
 <div align="center">
   <h1>Apache Kafka Learning</h1>
-  <p><i>Kafka Streams API with Java</i></p>
+  <p><i>Kafka APIs with Java</i></p>
 </div>
 
-~~And maybe a sample side project that I'll probably never finish...~~
+This repository uses OpenJDK 11.
 
-This project uses OpenJDK 11.
+## Wikimedia Event Change Data Stream
+
+The project implements a Java Application that produces, data from the [Wikimedia EventStream API](https://stream.wikimedia.org/v2/ui/#/?streams=mediawiki.recentchange) to a local topic.
+
+The Application then consumes the data from the topic and sends to a local instance of OpenSearch.
 
 ## Kafka Basics
 
