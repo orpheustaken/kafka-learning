@@ -4,14 +4,19 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestHighLevelClient;
+import org.opensearch.client.indices.CreateIndexRequest;
+import org.opensearch.client.indices.GetIndexRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URI;
 
 public class OpenSearchConsumer {
     public static RestHighLevelClient createOpenSearchClient() {
-        // Create OpenSearch Client
         String connString = "http://localhost:9200";
 
         // Build a URI from connection string
@@ -41,9 +46,30 @@ public class OpenSearchConsumer {
 
         return restHighLevelClient;
     }
-    // Create Kafka Client
 
-    // Main Code Logic
+    public static void main(String[] args) throws IOException {
+        Logger log = LoggerFactory.getLogger(OpenSearchConsumer.class.getSimpleName());
 
-    // Closure
+        // Create OpenSearch Client
+        RestHighLevelClient openSearchClient = createOpenSearchClient();
+
+        // Create index on OpenSearch if it doesn't exist
+        try (openSearchClient) {
+            boolean indexExists = openSearchClient.indices().exists(new GetIndexRequest("wikimedia"), RequestOptions.DEFAULT);
+
+            if (!indexExists) {
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest("wikimedia");
+                openSearchClient.indices().create(createIndexRequest, RequestOptions.DEFAULT);
+                log.info("Wikimedia Index has been created");
+            } else {
+                log.info("Wikimedia Index already exists");
+            }
+        }
+
+        // Create Kafka Client
+
+        // Main Code Logic
+
+        // Closure
+    }
 }
