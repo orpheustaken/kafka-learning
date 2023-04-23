@@ -27,17 +27,24 @@ public class WikimediaChangesProducer {
         // Create Producer Object
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
+        // Event Handler and Source
+        // Uses the okhttp lib to retrieve data from the URI and produce to the topic
+
+        // The class WikimediaChangeHandler manages the producement by implementing a BackgroundEventHandler Interface
         BackgroundEventHandler eventHandler = new WikimediaChangeHandler(producer, topic);
 
+        // Event Source and Handler properties
         EventSource.Builder eventSourceBuilder = new EventSource.Builder(URI.create(url));
         BackgroundEventSource.Builder backgroundEventSourceBuilder = new BackgroundEventSource.Builder(eventHandler, eventSourceBuilder);
 
+        // Builds the EventSource based on properties
         BackgroundEventSource backgroundEventSource = backgroundEventSourceBuilder.build();
 
-        // Start Producer from another thread
+        // Start Producer by calling the backgroundEventSource, where the producer message sending is defined
         backgroundEventSource.start();
 
-        // Produce for 10 minutes and block the program until then
-        TimeUnit.MINUTES.sleep(10);
+        // Produce for 30 segunds then stops
+        // Without this the Main thread would exit immediately after starting another thread, without producing any messages
+        TimeUnit.SECONDS.sleep(30);
     }
 }
